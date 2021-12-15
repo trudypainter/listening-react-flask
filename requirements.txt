@@ -1,25 +1,8 @@
-# This file may be used to create an environment using:
-# $ conda create --name <env> --file <this file>
-# platform: osx-64
-certifi=2021.10.8
-click=8.0.3
-dataclasses=0.8
-flask=2.0.2
-itsdangerous=2.0.1
-jinja2=3.0.2
-libcxx=12.0.0
-libffi=3.3
-markupsafe=2.0.1
-ncurses=6.3
-openssl=1.1.1l=h9ed2024_0
-pip=21.2.4=py39hecd8cb5_0
-python=3.9.7=h88f2d9e_1
-readline=8.1=h9ed2024_0
-setuptools=58.0.4=py39hecd8cb5_0
-sqlite=3.36.0=hce871da_0
-tk=8.6.11=h7bc2e8c_0
-tzdata=2021e=hda174b7_0
-werkzeug=2.0.2=pyhd3eb1b0_0
-wheel=0.37.0=pyhd3eb1b0_1
-xz=5.2.5=h1de35cc_0
-zlib=1.2.11=h1de35cc_3
+Flask==0.8
+Jinja2==2.6
+Werkzeug==0.8.3
+certifi==0.0.8
+chardet==1.0.1
+distribute==0.6.24
+gunicorn==0.14.2
+requests==0.11.1
