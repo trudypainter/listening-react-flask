@@ -6,6 +6,10 @@ def index():
     print("GOT REQUEST *****😀")
     return app.send_static_file('index.html')
 
+@app.route('/test', methods=["GET"])
+def test():
+    return "test"
+
 if __name__ == '__main__':
   app.run(debug=True)
 
