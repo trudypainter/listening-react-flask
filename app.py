@@ -1,5 +1,5 @@
 from flask import Flask, render_template, send_from_directory
-app = Flask(__name__, static_url_path='', static_folder='frontend/build')
+app = Flask(__name__, static_url_path='', static_folder='./frontend/build')
 
 @app.route("/", defaults={'path':''})
 def serve(path):
