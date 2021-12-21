@@ -1,5 +1,5 @@
-import CalendarView from "./components/CalendarView";
-import DayView from "./components/DayView";
+import CalendarView from "./components/Calendar/CalendarView";
+import DayView from "./components/Day/DayView";
 import "./App.css";
 
 const App = () => {
