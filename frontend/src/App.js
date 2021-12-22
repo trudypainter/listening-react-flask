@@ -4,7 +4,7 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 
 const App = () => {
-  const [selectedDay, setSelectedDay] = useState("");
+  const [selectedDay, setSelectedDay] = useState("test");
   const [dates, updateDates] = useState([]);
 
   // on load perform get request to get dates
@@ -18,8 +18,8 @@ const App = () => {
 
   return (
     <div className="App">
-      <CalendarView dates={dates} />
-      <DayView />
+      <CalendarView dates={dates} onNewDay={setSelectedDay} />
+      <DayView onNewDay={setSelectedDay} selectedDay={selectedDay} />
     </div>
   );
 };

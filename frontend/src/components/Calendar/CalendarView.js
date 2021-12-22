@@ -8,7 +8,7 @@ const CalendarView = (props) => {
   return (
     <div className="calendarView">
       <DaysOfTheWeek />
-      <CalendarList dates={props.dates} />
+      <CalendarList onNewDay={props.onNewDay} dates={props.dates} />
     </div>
   );
 };

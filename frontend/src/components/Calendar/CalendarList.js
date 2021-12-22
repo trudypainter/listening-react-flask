@@ -7,7 +7,7 @@ const CalendarList = (props) => {
   return (
     <div className="calendarList">
       {props.dates.map((date) => (
-        <CalendarDay key={date.id} date={date} />
+        <CalendarDay onNewDay={props.onNewDay} key={date.id} date={date} />
       ))}
     </div>
   );
