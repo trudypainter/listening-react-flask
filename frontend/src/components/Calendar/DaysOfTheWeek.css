@@ -1,4 +1,11 @@
 .daysContainer {
   display: flex;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
+  border-bottom: 1px solid black;
+}
+.day {
+  display: inline-block;
+  width: calc(100% * (1 / 7));
+  text-align: center;
+  line-height: 20px;
 }

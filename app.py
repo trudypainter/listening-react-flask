@@ -54,7 +54,7 @@ def callback():
     res_data = res.json()
     return res_data
 
-# GET ACCESS TOKEN
+# 🟨 GET ACCESS TOKEN
 def get_access_token():
     payload = {'grant_type': 'refresh_token',
              'refresh_token': REFRESH_TOKEN,
@@ -78,6 +78,7 @@ def get_recently_played():
     r = requests.get(url, headers=headers)
     return r.json()
 
+# 🟨 GET CONTEXT NAME
 def get_context_info(href_url):
     ACCESS_TOKEN = get_access_token()
     headers = {'Authorization': f"Bearer {ACCESS_TOKEN}"}
@@ -113,7 +114,7 @@ class Song(db.Model):
     def __repr__(self):
         return "[" + self.timestamp + ": " + self.song + " by " + self.artist + "]"
 
-# 🟨 ADD MOST RECENT LISTENING HISTORY
+# 🟩 ADD MOST RECENT LISTENING HISTORY
 @app.route('/api/collect', methods=["GET"])
 def collect_listening():
 
@@ -174,7 +175,7 @@ def collect_listening():
 
     return {"songs added":songs_added}
     
-# 🟨 GET SONG HISTORY FOR SPECIFC DAY
+# 🟦 GET SONG HISTORY FOR SPECIFC DAY
 @app.route('/api/<date>', methods=["GET"])
 def get_date(date):
 
@@ -184,7 +185,7 @@ def get_date(date):
 
     return date
 
-# 🟨 GET ALL SIMPLE SONG DATES
+# 🟦 GET ALL SIMPLE SONG DATES
 @app.route('/api/dates', methods=["GET"])
 def get_all_dates():
     date_list = []
@@ -195,7 +196,7 @@ def get_all_dates():
     # RETURN IN ARRAY OF STRINGS
     return {"dates": date_list}
 
-# 🟨 GET ALL SIMPLE SONG DATES
+# 🟦 GET ALL SIMPLE SONG DATES
 @app.route('/api/all_songs', methods=["GET"])
 def get_all_songs():
     song_list = []

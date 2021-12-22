@@ -1,0 +1,20 @@
+.calendarDay {
+  color: black;
+  background-color: white;
+  font-size: 10px;
+
+  width: calc(100% * (1 / 7));
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.calendarDay:hover {
+  color: white;
+  background-color: black;
+
+  cursor: pointer;
+}

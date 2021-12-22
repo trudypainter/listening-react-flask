@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import CalendarDay from "./CalendarDay";
 
 import "./CalendarList.css";
 
 const CalendarList = (props) => {
-  let dates = [];
-
   return (
-    <div className="calendarView">
-      <DaysOfTheWeek />
-      <CalendarList dates={dates} />
+    <div className="calendarList">
+      {props.dates.map((date) => (
+        <CalendarDay key={date.id} date={date} />
+      ))}
     </div>
   );
 };
