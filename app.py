@@ -180,10 +180,31 @@ def collect_listening():
 def get_date(date):
 
     # GET ALL ROWS WHERE SIMPLE DATE IS <date>
+    formatted_date = date.replace(".", "/")
+
+    song_list = []
+    for song in Song.query.filter_by(short_day=formatted_date).all():
+        song_list.append({
+            "artist": str(song.artist),
+            "album": str(song.album),
+            "song": str(song.song),
+            "spotify_track_link": str(song.spotify_track_link),
+            "spotify_img_link": str(song.spotify_img_link),
+            "uri":str(song.uri),
+
+            "timestamp": str(song.timestamp),
+            "time_of_day": str(song.time_of_day),
+            "short_day": str(song.short_day),
+            "long_day": str(song.long_day),
+
+            "context_uri": str(song.context_uri),
+            "context_link": str(song.context_link),
+            "context_name": str(song.context_name),
+        })
 
     # response is parseable for DayView.js on frontend
 
-    return date
+    return {"songs": song_list}
 
 # 🟦 GET ALL SIMPLE SONG DATES
 @app.route('/api/dates', methods=["GET"])

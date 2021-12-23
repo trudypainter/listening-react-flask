@@ -1,0 +1,32 @@
+.songRow {
+  font-size: 10px;
+  color: white;
+  display: flex;
+  text-align: left;
+
+  width: 100%;
+}
+
+img {
+  height: 40px;
+  margin: 10px;
+}
+
+.song {
+  padding-top: 10px;
+  width: 40%;
+}
+.songItem:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.context {
+  padding-top: 10px;
+  width: 40%;
+}
+
+.contextItem:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
