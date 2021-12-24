@@ -111,6 +111,8 @@ class Song(db.Model):
     context_link = db.Column(db.String(120))
     context_name = db.Column(db.String(120))
 
+    preview_url = db.Column(db.String(120))
+
     def __repr__(self):
         return "[" + self.timestamp + ": " + self.song + " by " + self.artist + "]"
 
@@ -144,6 +146,8 @@ def collect_listening():
 
             # build time info
             dateObj = parser.parse(timestamp)
+            dateObj = dateObj - datetime.timedelta(hours=5) #2018-01-02T22:10:05.284208
+            timestamp = datetime.datetime.strftime(dateObj, '%Y-%m-%dT%H:%M:%S.%f%z') # 04:23
             time_of_day = datetime.datetime.strftime(dateObj, "%H:%M") # 04:23
             short_date = datetime.datetime.strftime(dateObj, "%m/%d/%Y") #07/06/2017
             long_date = datetime.datetime.strftime(dateObj, "%b %d, %Y") #12 Jun, 2018
@@ -166,6 +170,8 @@ def collect_listening():
                 context_uri = context_uri,
                 context_link = context_link,
                 context_name = context_name.get("name", ""),
+
+                preview_url = songObj.get('preview_url')
             )
             print(new_song)
             db.session.add(new_song)
@@ -201,6 +207,8 @@ def get_date(date):
             "context_uri": str(song.context_uri),
             "context_link": str(song.context_link),
             "context_name": str(song.context_name),
+
+            "preview_url": str(song.preview_url)
         })
 
     sorted_songs = sorted(song_list, key=lambda d: parser.parse(d['timestamp']))

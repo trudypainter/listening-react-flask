@@ -19,7 +19,7 @@ const DayChart = (props) => {
   const [selectedSong, setSelectedSong] = useState({});
 
   const enterNodeHanlder = (song) => {
-    console.log(song);
+    console.log("playing: ", song.preview_url);
     setSelectedSong(song);
   };
 
