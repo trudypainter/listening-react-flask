@@ -184,6 +184,7 @@ def get_date(date):
 
     song_list = []
     for song in Song.query.filter_by(short_day=formatted_date).all():
+
         song_list.append({
             "artist": str(song.artist),
             "album": str(song.album),
@@ -202,9 +203,9 @@ def get_date(date):
             "context_name": str(song.context_name),
         })
 
-    # response is parseable for DayView.js on frontend
+    sorted_songs = sorted(song_list, key=lambda d: parser.parse(d['timestamp']))
 
-    return {"songs": song_list}
+    return {"songs": sorted_songs}
 
 # 🟦 GET ALL SIMPLE SONG DATES
 @app.route('/api/dates', methods=["GET"])
@@ -212,10 +213,14 @@ def get_all_dates():
     date_list = []
     # GET DISTINCT SIMPLE DATES FROM SONG ROWS
     for val in db.session.query(Song.short_day).distinct():
-        date_list.append(val.short_day)
+        date_list.append(parser.parse(val.short_day))
+
+    date_list.sort(reverse=True)
+
+    date_strs = [datetime.datetime.strftime(dateObj, "%m/%d/%Y") for dateObj in date_list]
 
     # RETURN IN ARRAY OF STRINGS
-    return {"dates": date_list}
+    return {"dates": date_strs}
 
 # 🟦 GET ALL SIMPLE SONG DATES
 @app.route('/api/all_songs', methods=["GET"])

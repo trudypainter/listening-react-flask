@@ -1,8 +1,10 @@
 .dayChart {
-  height: 400px;
+  height: 480px;
   width: 80%;
   margin: auto;
 
   margin-top: 40px;
-  background-color: gray;
+  background-color: white;
+
+  display: block;
 }

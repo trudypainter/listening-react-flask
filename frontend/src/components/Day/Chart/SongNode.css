@@ -1,0 +1,15 @@
+.songNode {
+  height: 15px;
+  width: 15px;
+
+  border: 0px solid black;
+  border-radius: 100%;
+  background-color: black;
+
+  margin: 5px 0px;
+}
+
+.songNode:hover {
+  cursor: pointer;
+  background-color: greenyellow;
+}

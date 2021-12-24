@@ -27,10 +27,14 @@ const SongRow = (props) => {
       </div>
 
       <div className="context">
-        <div>{props.song.time_of_day}</div>
-        <div onClick={contextClickHanlder} className="contextItem">
-          {props.song.context_name}
-        </div>
+        {props.song.time_of_day && (
+          <div>Played at: {props.song.time_of_day}</div>
+        )}
+        {props.song.time_of_day && (
+          <div onClick={contextClickHanlder} className="contextItem">
+            Context: {props.song.context_name}
+          </div>
+        )}
       </div>
     </div>
   );

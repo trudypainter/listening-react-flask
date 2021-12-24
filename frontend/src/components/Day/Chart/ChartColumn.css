@@ -1,0 +1,8 @@
+.chartColumn {
+  width: 4.166%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}

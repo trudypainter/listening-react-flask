@@ -1,4 +1,7 @@
 .songList {
-  width: 100%;
+  width: 80%;
   background-color: black;
+  margin: auto;
+
+  padding-top: 20px;
 }

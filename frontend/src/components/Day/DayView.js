@@ -8,7 +8,7 @@ const DayView = (props) => {
   return (
     <div className="dayView">
       <DayMenu selectedDay={props.selectedDay} />
-      <DayChart selectedDay={props.selectedDay} />
+      <DayChart selectedDay={props.selectedDay} songs={props.songs} />
       <SongList selectedDay={props.selectedDay} songs={props.songs} />
     </div>
   );
