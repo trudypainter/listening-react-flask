@@ -135,6 +135,9 @@ def collect_listening():
         songObj = song.get("track")
 
         #ONLY ADD NEW ROWS
+        dateObj = parser.parse(timestamp)
+        dateObj = dateObj - datetime.timedelta(hours=5) 
+        timestamp = datetime.datetime.strftime(dateObj, '%Y-%m-%dT%H:%M:%S.%f%z') #2018-01-02T22:10:05.284208
         print("CHECKING ", timestamp)
         exists = Song.query.filter_by(timestamp = timestamp).first()
         if not exists:
@@ -145,9 +148,6 @@ def collect_listening():
             context_name = get_context_info(context.get("href", ""))
 
             # build time info
-            dateObj = parser.parse(timestamp)
-            dateObj = dateObj - datetime.timedelta(hours=5) #2018-01-02T22:10:05.284208
-            timestamp = datetime.datetime.strftime(dateObj, '%Y-%m-%dT%H:%M:%S.%f%z') # 04:23
             time_of_day = datetime.datetime.strftime(dateObj, "%H:%M") # 04:23
             short_date = datetime.datetime.strftime(dateObj, "%m/%d/%Y") #07/06/2017
             long_date = datetime.datetime.strftime(dateObj, "%b %d, %Y") #12 Jun, 2018

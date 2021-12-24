@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./DayChart.css";
 import ChartDisplay from "./Chart/ChartDisplay";
 import ChartSelectionBar from "./Chart/ChartSelectionBar";
@@ -17,10 +17,14 @@ const DayChart = (props) => {
 
   // handle hovering
   const [selectedSong, setSelectedSong] = useState({});
+  const audioRef = useRef(new Audio(""));
 
   const enterNodeHanlder = (song) => {
+    audioRef.current.pause();
     console.log("playing: ", song.preview_url);
     setSelectedSong(song);
+    audioRef.current = new Audio(song.preview_url);
+    audioRef.current.play();
   };
 
   const exitNodeHanlder = () => {
