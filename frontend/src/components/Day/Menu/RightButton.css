@@ -2,3 +2,7 @@
   width: 100px;
   text-align: center;
 }
+
+.rightButton:hover {
+  cursor: pointer;
+}

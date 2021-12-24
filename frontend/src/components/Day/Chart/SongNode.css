@@ -11,5 +11,6 @@
 
 .songNode:hover {
   cursor: pointer;
-  background-color: greenyellow;
+  background-color: white;
+  border: 2px solid black;
 }

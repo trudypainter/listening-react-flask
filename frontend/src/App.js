@@ -1,7 +1,9 @@
 import CalendarView from "./components/Calendar/CalendarView";
 import DayView from "./components/Day/DayView";
+import Popup from "./components/Popup";
 import "./App.css";
 import React, { useState, useEffect } from "react";
+import ClickAwayListener from "react-click-away-listener";
 
 const App = () => {
   const [selectedDay, setSelectedDay] = useState("test");
@@ -33,6 +35,9 @@ const App = () => {
       });
   };
 
+  //popup trigger
+  const [popup, setPopup] = useState(true);
+
   return (
     <div className="App">
       <CalendarView dates={dates} onNewDay={newDayHandler} />
@@ -41,6 +46,11 @@ const App = () => {
         selectedDay={selectedDay}
         songs={songs}
       />
+      {popup && (
+        <ClickAwayListener onClickAway={() => setPopup(false)}>
+          <Popup />
+        </ClickAwayListener>
+      )}
     </div>
   );
 };

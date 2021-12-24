@@ -7,7 +7,7 @@ import SongList from "./SongList";
 const DayView = (props) => {
   return (
     <div className="dayView">
-      <DayMenu selectedDay={props.selectedDay} />
+      <DayMenu selectedDay={props.selectedDay} onNewDay={props.onNewDay} />
       <DayChart selectedDay={props.selectedDay} songs={props.songs} />
       <SongList selectedDay={props.selectedDay} songs={props.songs} />
     </div>

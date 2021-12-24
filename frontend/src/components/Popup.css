@@ -1,0 +1,53 @@
+.popup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  position: absolute;
+  top: 100px;
+  right: calc(50vw - 200px);
+
+  width: 400px;
+  height: 440px;
+  background-color: hotpink;
+}
+.center {
+  width: 380px;
+
+  margin: 3px 0px;
+}
+.button {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  border-radius: 40px;
+  border-style: 1px solid black;
+  width: 100px;
+  outline: none;
+
+  margin: auto;
+}
+.button:hover {
+  background-color: white;
+  color: black;
+  width: 100px;
+  padding: 10px;
+  border-radius: 40px;
+  border-style: 1px solid black;
+  cursor: pointer;
+  outline: none;
+}
+
+a {
+  color: black;
+}
+a:hover {
+  color: black;
+}
+
+.tutorial {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}

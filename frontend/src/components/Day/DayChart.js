@@ -20,14 +20,14 @@ const DayChart = (props) => {
   const audioRef = useRef(new Audio(""));
 
   const enterNodeHanlder = (song) => {
-    audioRef.current.pause();
     console.log("playing: ", song.preview_url);
     setSelectedSong(song);
     audioRef.current = new Audio(song.preview_url);
     audioRef.current.play();
   };
 
-  const exitNodeHanlder = () => {
+  const exitNodeHanlder = (song) => {
+    audioRef.current.pause();
     console.log("there was an exit");
     setSelectedSong({});
   };

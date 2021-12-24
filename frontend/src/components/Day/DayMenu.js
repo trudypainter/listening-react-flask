@@ -6,9 +6,9 @@ import LeftButton from "./Menu/LeftButton";
 const DayMenu = (props) => {
   return (
     <div className="dayMenu">
-      <LeftButton />
+      <LeftButton selectedDay={props.selectedDay} onNewDay={props.onNewDay} />
       <div>{props.selectedDay}</div>
-      <RightButton />
+      <RightButton selectedDay={props.selectedDay} onNewDay={props.onNewDay} />
     </div>
   );
 };

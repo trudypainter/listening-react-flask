@@ -18,7 +18,7 @@ const ChartColumn = (props) => {
             key={song.id}
             song={song}
             enterNodeHanlder={props.enterNodeHanlder}
-            // exitNodeHanlder={props.exitNodeHanlder}
+            exitNodeHandler={props.exitNodeHanlder}
           />
         ))}
       </div>

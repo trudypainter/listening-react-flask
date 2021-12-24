@@ -8,9 +8,10 @@ const SongNode = (props) => {
         props.enterNodeHanlder(props.song);
       }}
       onMouseLeave={() => {
-        props.enterNodeHanlder({});
+        props.exitNodeHandler({});
       }}
       className="songNode"
+      onClick={() => window.open(props.song.spotify_track_link)}
     ></button>
   );
 };
