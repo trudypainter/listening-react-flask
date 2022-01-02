@@ -3,7 +3,7 @@
   background-color: white;
   font-size: 10px;
 
-  width: calc(100% * (1 / 7));
+  width: calc(100% * (1 / 7) - 1px);
   display: inline-block;
   height: 20px;
   line-height: 20px;

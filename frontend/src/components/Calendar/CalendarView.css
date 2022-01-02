@@ -1,5 +1,11 @@
 .calendarView {
   width: 50%;
-  height: 100vh;
   background-color: white;
+}
+
+@media only screen and (max-width: 800px) {
+  /* For mobile phones: */
+  .dayView {
+    visibility: hidden;
+  }
 }

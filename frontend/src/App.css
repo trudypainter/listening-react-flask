@@ -2,3 +2,10 @@
   text-align: center;
   display: flex;
 }
+
+@media only screen and (max-width: 800px) {
+  /* For mobile phones: */
+  .App {
+    overflow: hidden;
+  }
+}

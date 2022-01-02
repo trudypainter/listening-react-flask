@@ -1,4 +1,19 @@
 .calendarList {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: row-reverse;
+}
+
+.empty {
+  width: calc(100% * (1 / 7) - 1px);
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.final {
+  border-right: 1px solid black;
 }

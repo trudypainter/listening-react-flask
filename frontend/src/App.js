@@ -4,6 +4,7 @@ import Popup from "./components/Popup";
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import ClickAwayListener from "react-click-away-listener";
+import CoverUp from "./components/CoverUp";
 
 const App = () => {
   const [selectedDay, setSelectedDay] = useState("test");
@@ -40,6 +41,7 @@ const App = () => {
 
   return (
     <div className="App">
+      <CoverUp></CoverUp>
       <CalendarView dates={dates} onNewDay={newDayHandler} />
       <DayView
         onNewDay={newDayHandler}

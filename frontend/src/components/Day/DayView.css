@@ -2,3 +2,10 @@
   width: 50%;
   background-color: black;
 }
+
+@media only screen and (max-width: 800px) {
+  /* For mobile phones: */
+  .dayView {
+    visibility: hidden;
+  }
+}

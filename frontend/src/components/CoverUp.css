@@ -1,0 +1,26 @@
+.coverUp {
+  position: absolute;
+  background-color: hotpink;
+  height: 100%;
+  width: 100%;
+
+  top: 0px;
+  left: 0px;
+  visibility: collapse;
+}
+
+.coverText {
+  padding: 30px;
+}
+
+.demoPlayer {
+  margin: auto;
+}
+
+@media only screen and (max-width: 800px) {
+  /* For mobile phones: */
+  .coverUp {
+    visibility: visible;
+    z-index: 9999999999999999;
+  }
+}

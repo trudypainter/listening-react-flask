@@ -16,13 +16,10 @@ const RightButton = (props) => {
     ) {
       console.log(selectedDayObj);
       selectedDayObj.setDate(selectedDayObj.getDate() - 1);
-      console.log("GOT TO CLAUSE");
-      console.log(selectedDayObj);
 
-      const options = { year: "numeric", month: "2-digit", day: "numeric" };
+      const options = { year: "numeric", month: "2-digit", day: "2-digit" };
 
-      console.log(endDate.toLocaleDateString("en-US", options));
-      props.onNewDay(endDate.toLocaleDateString("en-US", options));
+      props.onNewDay(selectedDayObj.toLocaleDateString("en-US", options));
     }
   };
 
