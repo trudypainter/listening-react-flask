@@ -140,8 +140,9 @@ def collect_listening():
         dateObj = dateObj - datetime.timedelta(hours=5) 
         timestamp = datetime.datetime.strftime(dateObj, '%Y-%m-%dT%H:%M:%S.%f%z') #2018-01-02T22:10:05.284208
         print("CHECKING ", timestamp)
+        print(songObj.get("name"))
         exists = Song.query.filter_by(timestamp = timestamp).first()
-        
+
         if not exists:
 
             # build context info
@@ -186,7 +187,6 @@ def collect_listening():
                 print("****ERROR FOR", )
                 print(e)
 
-            
 
     return {"songs added":songs_added}
     
