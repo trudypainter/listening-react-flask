@@ -1,3 +1,4 @@
+from os import error
 from flask import Flask, send_from_directory, redirect, request
 from sqlalchemy.sql.sqltypes import Integer
 from flask_sqlalchemy import SQLAlchemy
@@ -140,12 +141,14 @@ def collect_listening():
         timestamp = datetime.datetime.strftime(dateObj, '%Y-%m-%dT%H:%M:%S.%f%z') #2018-01-02T22:10:05.284208
         print("CHECKING ", timestamp)
         exists = Song.query.filter_by(timestamp = timestamp).first()
+        
         if not exists:
 
             # build context info
-            context_uri = context.get('uri', "")
-            context_link = context.get('external_urls', "").get("spotify", "")
-            context_name = get_context_info(context.get("href", ""))
+            if context is not None:
+                context_uri = context.get('uri', "")
+                context_link = context.get('external_urls', "").get("spotify", "")
+                context_name = get_context_info(context.get("href", ""))
 
             # build time info
             time_of_day = datetime.datetime.strftime(dateObj, "%H:%M") # 04:23
@@ -153,31 +156,37 @@ def collect_listening():
             long_date = datetime.datetime.strftime(dateObj, "%b %d, %Y") #12 Jun, 2018
 
             # build context info
+            try:
+                new_song = Song(
+                    artist = songObj.get("artists")[0].get("name"),
+                    album = songObj.get("album").get("name"),
+                    song = songObj.get("name"),
+                    spotify_track_link = songObj.get("external_urls").get("spotify"),
+                    spotify_img_link = songObj.get("album").get("images")[0].get("url"),
+                    uri = songObj.get("uri"),
 
-            new_song = Song(
-                artist = songObj.get("artists")[0].get("name"),
-                album = songObj.get("album").get("name"),
-                song = songObj.get("name"),
-                spotify_track_link = songObj.get("external_urls").get("spotify"),
-                spotify_img_link = songObj.get("album").get("images")[0].get("url"),
-                uri = songObj.get("uri"),
+                    timestamp = timestamp,
+                    time_of_day = time_of_day,
+                    short_day = short_date,
+                    long_day = long_date,
 
-                timestamp = timestamp,
-                time_of_day = time_of_day,
-                short_day = short_date,
-                long_day = long_date,
+                    context_uri = context_uri,
+                    context_link = context_link,
+                    context_name = context_name.get("name", ""),
 
-                context_uri = context_uri,
-                context_link = context_link,
-                context_name = context_name.get("name", ""),
+                    preview_url = songObj.get('preview_url')
+                )
 
-                preview_url = songObj.get('preview_url')
-            )
-            print(new_song)
-            db.session.add(new_song)
-            db.session.commit()
-            print("**ADDED: ", new_song)
-            songs_added.append(str(new_song))
+                print(new_song)
+                db.session.add(new_song)
+                db.session.commit()
+                print("**ADDED: ", new_song)
+                songs_added.append(str(new_song))
+            except error as e:
+                print("****ERROR FOR", )
+                print(e)
+
+            
 
     return {"songs added":songs_added}
     
