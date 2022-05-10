@@ -150,6 +150,10 @@ def collect_listening():
                 context_uri = context.get('uri', "")
                 context_link = context.get('external_urls', "").get("spotify", "")
                 context_name = get_context_info(context.get("href", ""))
+            else: 
+                context_uri = ""
+                context_link = ""
+                context_name = ""
 
             # build time info
             time_of_day = datetime.datetime.strftime(dateObj, "%H:%M") # 04:23
