@@ -149,7 +149,7 @@ def collect_listening():
             if context is not None:
                 context_uri = context.get('uri', "")
                 context_link = context.get('external_urls', "").get("spotify", "")
-                context_name = get_context_info(context.get("href", ""))
+                context_name = get_context_info(context.get("href", "")).get("name", "")
             else: 
                 context_uri = ""
                 context_link = ""
@@ -177,7 +177,7 @@ def collect_listening():
 
                     context_uri = context_uri,
                     context_link = context_link,
-                    context_name = context_name.get("name", ""),
+                    context_name = context_name,
 
                     preview_url = songObj.get('preview_url')
                 )
