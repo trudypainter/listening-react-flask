@@ -1,3 +1,3 @@
 # React Flask Listening
 
-flask run
+check writeup http://www.trudy.computer/listening-explorer 
