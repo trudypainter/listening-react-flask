@@ -153,8 +153,9 @@ def collect_listening():
                 context_uri = context.get('uri', "")
                 context_link = context.get('external_urls', "").get("spotify", "")
                 context_dict = get_context_info(context.get("href", ""))
-                print("🔴 CONTEXT NAME", context_name)
                 context_name=context_dict.get("name", " ")
+                print("🔴 CONTEXT NAME", context_name)
+
             else: 
                 context_uri = ""
                 context_link = ""
