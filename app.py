@@ -22,13 +22,13 @@ CLIENT_ID = "7397f801a0974e4c8c143e7f13de3c1c"
 CLIENT_SECRET = "86576b4dbd68493e89b64616396bd8cd"
 AUTH_URL = 'https://accounts.spotify.com/api/token'
 BASE_URL = 'https://api.spotify.com/v1/'
-REDIRECT_URI = 'http://localhost:5000/callback'
+REDIRECT_URI = 'http://0.0.0.0:5000/callback'
 SCOPE = 'user-read-recently-played'
 AUTH_URL = 'https://accounts.spotify.com/authorize'
 TOKEN_URL = 'https://accounts.spotify.com/api/token'
 
-ACCESS_TOKEN = "BQBalEU5MeMTnK_qsyHb_aTLuaLRinr2dXsItZIMAkUSi83PDa0ameoolbAFcLQQkyoxo2BAyowcCuIQe7tWCchGVcnBC_YuFSvrEMNoiOc54PRCCLnNj6_dukKRzgOD7MEMvSN6367e9MDp9OINXrsXsA"
-REFRESH_TOKEN = "AQCpj1cKRaoc-Ksc1AFx5mMHnq4xU9Eaq9Of6nBFciZbXgdH_ikKY53TO6xG3UZpYlZzjw-0XJ_hLXZv2Qn9G9VoANxnVCaDOROOJgZ311AM8OBd9ztfEiX85iD33MmVaO4"
+ACCESS_TOKEN = "BQBbKXIRidCSMgauYWGiDAyhavRC_k-NjS4Z-0OOc29g7JjI7Igr78c5OFIk5-EzfP4f-wZ83PgNImddQRVya-CGPlicMpwpUDt1trpp7UzzXg0k4E1e_PliGJgZzNDM2PqtPdPHVICjshkCGYD_VNNgE_6lQ3UogSa4StHL6QIYbkQsd52KvQg_g5s"
+REFRESH_TOKEN = "AQBdf8JAeqdp3gc01tV03eyxIjyVUGDD9ZJuFfaEbul2xU89HZW9rxqQ7ErdSUDfNijEL6nl_qOG91AcuqWmtL0CQmNkdT7rBfnr8Sq8gjJLxNol8G0n4YLlAJRQYHbt8hc"
 
 # 🟨 GET TOKENS (specifically if refresh fails)
 @app.route('/api/login', methods=["GET"])
@@ -72,12 +72,14 @@ def get_recently_played():
     # build request
      # Get profile info
     ACCESS_TOKEN = get_access_token()
+    print("💞 access token", ACCESS_TOKEN)
     headers = {'Authorization': f"Bearer {ACCESS_TOKEN}"}
     url = BASE_URL + "me/player/recently-played"
 
     # get request
     r = requests.get(url, headers=headers)
-    return r.json()
+    data = r.json()
+    return data
 
 # 🟨 GET CONTEXT NAME
 def get_context_info(href_url):
@@ -124,6 +126,7 @@ def collect_listening():
     # 🔸 PERFORM SPOTIFY API GET REQUEST
     # get access token
     listening_history = get_recently_played()
+    print("🟢", listening_history['items'][0]['track']['name'])
     # return listening_history
 
     # ITERATE OVER RESPONSE OBJECT AND ADD SONG ROWS TO DB
@@ -149,7 +152,9 @@ def collect_listening():
             if context is not None:
                 context_uri = context.get('uri', "")
                 context_link = context.get('external_urls', "").get("spotify", "")
-                context_name = get_context_info(context.get("href", "")).get("name", "")
+                context_dict = get_context_info(context.get("href", ""))
+                print("🔴 CONTEXT NAME", context_name)
+                context_name=context_dict.get("name", " ")
             else: 
                 context_uri = ""
                 context_link = ""
@@ -192,6 +197,7 @@ def collect_listening():
                 print(e)
 
 
+    print("🟢songs added: ", songs_added)
     return {"songs added":songs_added}
     
 # 🟦 GET SONG HISTORY FOR SPECIFC DAY
