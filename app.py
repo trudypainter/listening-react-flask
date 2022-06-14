@@ -4,6 +4,7 @@ from sqlalchemy.sql.sqltypes import Integer
 from flask_sqlalchemy import SQLAlchemy
 import requests
 import json
+from flask_cors import CORS
 from urllib.parse import urlencode
 from dateutil import parser
 import psycopg2
@@ -12,6 +13,7 @@ import datetime
 app = Flask(__name__, static_folder='frontend/build', static_url_path='/')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://gyapnprijuucxd:b5d546034ef4baa6cbe6c08b8ac38f5a37ecda76e60679de14ad2b0f72e6d440@ec2-3-89-214-80.compute-1.amazonaws.com:5432/d3tt7l03ba5bep'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+CORS(app)
 db = SQLAlchemy(app)
 
 #########################
@@ -269,6 +271,59 @@ def index():
     return app.send_static_file('index.html')
 
 
+#######################
+#  ⭐️ TRUDYCOMPUTER   #
+#######################
+@app.route('/api/trudycomputer', methods=["POST", "GET", "OPTIONS"])
+def trudycomputer():
+    print("💞 trudycomputer request")
+    # print("** data: ", request.data)
+
+    if str(request.data) == "b''":
+        # print("🟡🟡🟡")
+        return {"status": "loading"}
+    
+    user_artist_list = json.loads(request.data)
+    # print("🔴", user_artist_list)
+    user_artist_names = [obj['name'] for obj in user_artist_list]
+    print("🟡", user_artist_names)
+
+    # build request base
+    ACCESS_TOKEN = get_access_token()
+    headers = {'Authorization': f"Bearer {ACCESS_TOKEN}"}
+
+    my_artist_objs = []
+    # get long term artists
+    url = BASE_URL + "me/top/artists?limit=50&time_range=long_term"
+    r = requests.get(url, headers=headers)
+    data = r.json()
+    for obj in data['items']:
+        my_artist_objs.append(obj)
+
+    # get medium term artists
+    url = BASE_URL + "me/top/artists?limit=50&time_range=medium_term"
+    r = requests.get(url, headers=headers)
+    data = r.json()
+    for obj in data['items']:
+        my_artist_objs.append(obj)
+
+    # get short term artists
+    url = BASE_URL + "me/top/artists?limit=50&time_range=short_term"
+    r = requests.get(url, headers=headers)
+    data = r.json()
+    for obj in data['items']:
+        my_artist_objs.append(obj)
+
+    my_artist_names = [obj['name'] for obj in my_artist_objs]
+    print("🟢", my_artist_names)
+
+    # iterate over my artist and build set of names in common
+    user_set = set(user_artist_names)
+    intersection = sorted(list(user_set.intersection(my_artist_names)))
+    print("🔵", intersection)
+
+    return {"items" : intersection}
+
 if __name__ == '__main__':
-  app.run(debug=True)
+  app.run(debug=True, port=8888)
 
