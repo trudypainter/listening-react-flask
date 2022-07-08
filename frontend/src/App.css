@@ -7,5 +7,6 @@
   /* For mobile phones: */
   .App {
     overflow: hidden;
+    position: relative;
   }
 }

@@ -3,9 +3,12 @@
   background-color: white;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1000px) {
   /* For mobile phones: */
-  .dayView {
+
+  .calendarView {
+    width: 0%;
+    background-color: white;
     visibility: hidden;
   }
 }

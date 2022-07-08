@@ -3,9 +3,12 @@
   background-color: black;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1000px) {
   /* For mobile phones: */
   .dayView {
-    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
   }
 }

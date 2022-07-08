@@ -325,5 +325,5 @@ def trudycomputer():
     return {"items" : intersection}
 
 if __name__ == '__main__':
-  app.run(debug=True, port=8888)
+  app.run(debug=True, port=8889)
 
