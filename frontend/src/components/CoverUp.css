@@ -17,10 +17,9 @@
   margin: auto;
 }
 
-@media only screen and (max-width: 800px) {
-  /* For mobile phones: */
+/* @media only screen and (max-width: 800px) {
   .coverUp {
     visibility: visible;
     z-index: 9999999999999999;
   }
-}
+} */

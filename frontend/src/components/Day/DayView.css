@@ -6,6 +6,6 @@
 @media only screen and (max-width: 800px) {
   /* For mobile phones: */
   .dayView {
-    visibility: hidden;
+    width: 100%;
   }
 }
