@@ -1,4 +1,6 @@
 .chartDisplay {
   display: flex;
   height: 440px;
+
+  max-width: 700px;
 }
