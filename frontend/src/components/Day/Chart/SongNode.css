@@ -2,11 +2,12 @@
   height: 15px;
   width: 15px;
 
-  max-width: 15px;
+  max-width: 80%;
+  max-height: 80%;
 
   border: 0px solid black;
   border-radius: 100%;
-  background-color: blue;
+  background-color: purple;
 
   margin: 3px 0px;
 
