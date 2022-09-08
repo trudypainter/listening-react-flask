@@ -11,7 +11,8 @@ import psycopg2
 import datetime
 
 app = Flask(__name__, static_folder='frontend/build', static_url_path='/')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://gyapnprijuucxd:b5d546034ef4baa6cbe6c08b8ac38f5a37ecda76e60679de14ad2b0f72e6d440@ec2-3-89-214-80.compute-1.amazonaws.com:5432/d3tt7l03ba5bep'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://gyapnprijuucxd:b5d546034ef4baa6cbe6c08b8ac38f5a37ecda76e60679de14ad2b0f72e6d440@ec2-3-89-214-80.compute-1.amazonaws.com:5432/d3tt7l03ba5bep'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://qhqfwssuyjewqd:cb9714322d283006110fc1996641f76d68449811ab6586262008efad5953cf1b@ec2-44-205-112-253.compute-1.amazonaws.com:5432/daj7rkq3ne0rmh'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 CORS(app)
 db = SQLAlchemy(app)
