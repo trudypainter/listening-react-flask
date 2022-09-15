@@ -9,6 +9,7 @@ from urllib.parse import urlencode
 from dateutil import parser
 import psycopg2
 import datetime
+import pandas
 
 app = Flask(__name__, static_folder='frontend/build', static_url_path='/')
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://gyapnprijuucxd:b5d546034ef4baa6cbe6c08b8ac38f5a37ecda76e60679de14ad2b0f72e6d440@ec2-3-89-214-80.compute-1.amazonaws.com:5432/d3tt7l03ba5bep'
@@ -247,8 +248,15 @@ def get_all_dates():
         date_list.append(parser.parse(val.short_day))
 
     date_list.sort(reverse=True)
+    start = datetime.datetime.today() 
+    end = date_list[-1]
+    print(start)
+    print(end)
 
-    date_strs = [datetime.datetime.strftime(dateObj, "%m/%d/%Y") for dateObj in date_list]
+    pd_dates = pandas.date_range(end, start, freq='d')
+    print(pd_dates)
+    date_strs = [datetime.datetime.strftime(dateObj, "%m/%d/%Y") for dateObj in pd_dates]
+    date_strs = date_strs[::-1]
 
     # RETURN IN ARRAY OF STRINGS
     return {"dates": date_strs}

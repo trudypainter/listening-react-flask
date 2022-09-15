@@ -11,3 +11,9 @@ git add .
 git commit -m "commit message"
 git push heroku master
 ```
+
+and to check what's going on
+
+```
+heroku logs --tail
+```
